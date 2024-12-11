@@ -1,219 +1,148 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Tools Hub</title>
-    <link rel="stylesheet" href="/static/style.css">
-</head>
-<body>
-    <nav class="navbar">
-        <div class="nav-content">
-            <a href="#" class="logo">
-                <span>🛠</span>
-                ToolsHub
-            </a>
-            <button class="mobile-menu-btn">☰</button>
-            <div class="nav-links">
-                <a href="#">Home</a>
-                <a href="#">Tools</a>
-                <a href="#">Pricing</a>
-                <a href="#">API</a>
-                <a href="#">Support</a>
-            </div>
-        </div>
-    </nav>
+{% extends "master.html" %}
 
-    <main class="container">
+{% block content %}
+<main class="container">
         
-        <section class="hero">
-            <h1>Transform Your Files Effortlessly</h1>
-            <p>Professional-grade conversion tools for all your digital needs. Fast, secure, and easy to use.</p>
-        </section>
+    <section class="hero">
+        <h1>Transform Your Files Effortlessly</h1>
+        <p>Professional-grade conversion tools for all your digital needs. Fast, secure, and easy to use.</p>
+    </section>
 
-        <header>
-            <div class="container">
-                <div class="header-content">
-                    <div class="search-bar">
-                        <input type="text" placeholder="Search tools...">
-                        <button class="filter-btn">Filter</button>
-                    </div>
-                </div>
-            </div>
-        </header>
-
-        <div class="tools-grid">
-            <div class="tool-card">
-                <div class="tool-icon">🖼️</div>
-                <h3 class="tool-name">Image Converter</h3>
-                <p class="tool-description">Convert between JPG, PNG, WebP, and other formats. Maintain quality while optimizing file size.</p>
-                <div class="tool-stats">
-                    <div class="stat">
-                        <span class="stat-value">4.8</span>
-                        <span class="stat-label">Rating</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value">100%</span>
-                        <span class="stat-label">Secure</span>
-                    </div>
-                    <div class="stat">
-                        <span class="price-tag">Pro</span>
-                        <span class="stat-label">Price</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tool-card">
-                <div class="tool-icon">📄</div>
-                <h3 class="tool-name">PDF Tools</h3>
-                <p class="tool-description">Convert PDFs to images, merge multiple PDFs, compress files, and extract text.</p>
-
-                <div class="tool-stats">
-                    <div class="stat">
-                        <span class="stat-value">4.8</span>
-                        <span class="stat-label">Rating</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value">100%</span>
-                        <span class="stat-label">Secure</span>
-                    </div>
-                    <div class="stat">
-                        <span class="price-tag">Pro</span>
-                        <span class="stat-label">Price</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tool-card">
-                <div class="tool-icon">🎵</div>
-                <h3 class="tool-name">Audio Converter</h3>
-                <p class="tool-description">Convert audio files between MP3, WAV, AAC, and more. Adjust quality and metadata.</p>
-                <div class="tool-stats">
-                    <div class="stat">
-                        <span class="stat-value">4.8</span>
-                        <span class="stat-label">Rating</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value">100%</span>
-                        <span class="stat-label">Secure</span>
-                    </div>
-                    <div class="stat">
-                        <span class="price-tag">Pro</span>
-                        <span class="stat-label">Price</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tool-card">
-                <div class="tool-icon">🎥</div>
-                <h3 class="tool-name">Video Converter</h3>
-                <p class="tool-description">Convert videos to MP4, AVI, MOV formats. Compress and optimize for web.</p>
-                <div class="tool-stats">
-                    <div class="stat">
-                        <span class="stat-value">4.8</span>
-                        <span class="stat-label">Rating</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value">100%</span>
-                        <span class="stat-label">Secure</span>
-                    </div>
-                    <div class="stat">
-                        <span class="price-tag">Pro</span>
-                        <span class="stat-label">Price</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tool-card">
-                <div class="tool-icon">📊</div>
-                <h3 class="tool-name">Data Converter</h3>
-                <p class="tool-description">Convert between CSV, XML, JSON, and Excel formats. Clean and validate data.</p>
-                <div class="tool-stats">
-                    <div class="stat">
-                        <span class="stat-value">4.8</span>
-                        <span class="stat-label">Rating</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value">100%</span>
-                        <span class="stat-label">Secure</span>
-                    </div>
-                    <div class="stat">
-                        <span class="price-tag">Pro</span>
-                        <span class="stat-label">Price</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tool-card">
-                <div class="tool-icon">💾</div>
-                <h3 class="tool-name">Archive Tools</h3>
-                <p class="tool-description">Compress and extract ZIP, RAR, 7Z files. Password protection available.</p>
-                <div class="tool-stats">
-                    <div class="stat">
-                        <span class="stat-value">4.8</span>
-                        <span class="stat-label">Rating</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value">100%</span>
-                        <span class="stat-label">Secure</span>
-                    </div>
-                    <div class="stat">
-                        <span class="price-tag">Pro</span>
-                        <span class="stat-label">Price</span>
-                    </div>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search tools...">
+                    <button class="filter-btn">Filter</button>
                 </div>
             </div>
         </div>
-    </main>
+    </header>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Company</h3>
-                <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Press Kit</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Products</h3>
-                <ul>
-                    <li><a href="#">All Tools</a></li>
-                    <li><a href="#">Pricing</a></li>
-                    <li><a href="#">Enterprise</a></li>
-                    <li><a href="#">API Access</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Support</h3>
-                <ul>
-                    <li><a href="#">Help Center</a></li>
-                    <li><a href="#">Documentation</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Status</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Connect</h3>
-                <div class="social-links">
-                    <a href="#">📱</a>
-                    <a href="#">💭</a>
-                    <a href="#">📸</a>
-                    <a href="#">💼</a>
+    <div class="tools-grid">
+        <div class="tool-card">
+            <div class="tool-icon">🖼️</div>
+            <h3 class="tool-name">Image Converter</h3>
+            <p class="tool-description">Convert between JPG, PNG, WebP, and other formats. Maintain quality while optimizing file size.</p>
+            <div class="tool-stats">
+                <div class="stat">
+                    <span class="stat-value">4.8</span>
+                    <span class="stat-label">Rating</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">100%</span>
+                    <span class="stat-label">Secure</span>
+                </div>
+                <div class="stat">
+                    <span class="price-tag">Pro</span>
+                    <span class="stat-label">Price</span>
                 </div>
             </div>
         </div>
-    </footer>
 
-    <script>
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
+        <div class="tool-card">
+            <div class="tool-icon">📄</div>
+            <h3 class="tool-name">PDF Tools</h3>
+            <p class="tool-description">Convert PDFs to images, merge multiple PDFs, compress files, and extract text.</p>
 
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-    </script>
-</body>
-</html>
+            <div class="tool-stats">
+                <div class="stat">
+                    <span class="stat-value">4.8</span>
+                    <span class="stat-label">Rating</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">100%</span>
+                    <span class="stat-label">Secure</span>
+                </div>
+                <div class="stat">
+                    <span class="price-tag">Pro</span>
+                    <span class="stat-label">Price</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="tool-card">
+            <div class="tool-icon">🎵</div>
+            <h3 class="tool-name">Audio Converter</h3>
+            <p class="tool-description">Convert audio files between MP3, WAV, AAC, and more. Adjust quality and metadata.</p>
+            <div class="tool-stats">
+                <div class="stat">
+                    <span class="stat-value">4.8</span>
+                    <span class="stat-label">Rating</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">100%</span>
+                    <span class="stat-label">Secure</span>
+                </div>
+                <div class="stat">
+                    <span class="price-tag">Pro</span>
+                    <span class="stat-label">Price</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="tool-card">
+            <div class="tool-icon">🎥</div>
+            <h3 class="tool-name">Video Converter</h3>
+            <p class="tool-description">Convert videos to MP4, AVI, MOV formats. Compress and optimize for web.</p>
+            <div class="tool-stats">
+                <div class="stat">
+                    <span class="stat-value">4.8</span>
+                    <span class="stat-label">Rating</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">100%</span>
+                    <span class="stat-label">Secure</span>
+                </div>
+                <div class="stat">
+                    <span class="price-tag">Pro</span>
+                    <span class="stat-label">Price</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="tool-card">
+            <div class="tool-icon">📊</div>
+            <h3 class="tool-name">Data Converter</h3>
+            <p class="tool-description">Convert between CSV, XML, JSON, and Excel formats. Clean and validate data.</p>
+            <div class="tool-stats">
+                <div class="stat">
+                    <span class="stat-value">4.8</span>
+                    <span class="stat-label">Rating</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">100%</span>
+                    <span class="stat-label">Secure</span>
+                </div>
+                <div class="stat">
+                    <span class="price-tag">Pro</span>
+                    <span class="stat-label">Price</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="tool-card">
+            <div class="tool-icon">💾</div>
+            <h3 class="tool-name">Archive Tools</h3>
+            <p class="tool-description">Compress and extract ZIP, RAR, 7Z files. Password protection available.</p>
+            <div class="tool-stats">
+                <div class="stat">
+                    <span class="stat-value">4.8</span>
+                    <span class="stat-label">Rating</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">100%</span>
+                    <span class="stat-label">Secure</span>
+                </div>
+                <div class="stat">
+                    <span class="price-tag">Pro</span>
+                    <span class="stat-label">Price</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock content %}
+
+
