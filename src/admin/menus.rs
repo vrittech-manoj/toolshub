@@ -1,5 +1,6 @@
 use askama::Template;
 use super::menus_list;
+use axum::{extract::Path, response::IntoResponse};
 
 #[derive(Template)]
 #[template(path = "admin/table.html", escape = "none")]
@@ -8,7 +9,7 @@ pub struct ToolTemplate<'a> {
     pub menus: &'a Vec<menus_list::MenuItem>,
 }
 
-pub async fn menus() -> impl axum::response::IntoResponse {
+pub async fn menus(Path(menu_name): Path<String>) -> impl axum::response::IntoResponse {
     let name = "Admin Menus";
     let side_menus = menus_list::get_admin_menus();
     let template = ToolTemplate { name, menus: &side_menus };
