@@ -10,7 +10,8 @@ impl RouteNames {
         routes.insert("admin_login", "/admin/login/");
         routes.insert("admin_dashboard", "/admin/dashboard/");
         routes.insert("get-tools", "/tools/get-tools");
-        routes.insert("add-tools","/tools/add-tools/");
+        routes.insert("admin.get_tools","/admin/dashboard/:menu_name/");
+        routes.insert("admin.add_tools","/admin/dashboard/add/:menu_name/");
         Self { routes }
     }
 
