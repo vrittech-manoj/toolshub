@@ -2,7 +2,7 @@ use askama::Template;
 
 // Define the Askama template
 #[derive(Template)]
-#[template(path = "index.html",escape = "none")] // Path relative to the `templates` folder
+#[template(path = "admin/signin.html",escape = "none")] // Path relative to the `templates` folder
 pub struct ToolTemplate<'a> {
     pub name: &'a str,
 }
