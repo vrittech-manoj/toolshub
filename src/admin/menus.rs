@@ -29,6 +29,19 @@ pub enum FieldType {
     Number,
 }
 
+impl PartialEq<&str> for FieldType {
+    fn eq(&self, other: &&str) -> bool {
+        match self {
+            FieldType::Text => *other == "Text",
+            FieldType::Email => *other == "Email",
+            FieldType::File => *other == "File",
+            FieldType::Select => *other == "Select",
+            FieldType::Radio => *other == "Radio",
+            FieldType::Number => *other == "Number",
+        }
+    }
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Field {
     pub name: String,
@@ -71,7 +84,7 @@ pub fn text_field(name: &str, label: &str) -> Field {
         field_type: FieldType::Text,
         label: label.to_string(),
         required: true,
-        placeholder: Some(label.to_string()),
+        placeholder: Some(format!("Enter {}", label)),
         choices: None,
         value: None,
         css_class: Some("form-control".to_string()),
@@ -84,7 +97,7 @@ pub fn email_field(name: &str, label: &str) -> Field {
         field_type: FieldType::Email,
         label: label.to_string(),
         required: true,
-        placeholder: Some(format!("name@example.com")),
+        placeholder: Some("name@example.com".to_string()),
         choices: None,
         value: None,
         css_class: Some("form-control".to_string()),
@@ -103,7 +116,7 @@ pub fn select_field(name: &str, label: &str, choices: Vec<(String, String)>) -> 
         css_class: Some("form-select".to_string()),
     }
 }
-
+    
 pub struct Person {
     name: String,
     age: u32,
@@ -169,7 +182,7 @@ pub async fn add_menus(Path(menu_name): Path<String>) -> impl axum::response::In
         name: String::from("Alice"),
         age: 30,
     });
-
+    println!("{:?}",form);
     let menu_name = menu_name;
     let side_menus = menus_list::get_admin_menus();
     let template = AddToolTemplate { name:&menu_name, menus: &side_menus,peoples:&people,form: &form,};

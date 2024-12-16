@@ -1,79 +1,66 @@
-
-
 {% extends "master.html" %}
 
 {% block content %}
 
-         <!-- Form Start -->
-         <div class="container-fluid pt-4 px-4">
-            <div class="row g-4">
-               
- 
-                <div class="col-sm-12 col-xl-6">
-                   
-                        <h6 class="mb-4">Project Name</h6>
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floatingInput"
-                                placeholder="name@example.com">
-                            <label for="floatingInput">Name</label>
-                        </div>
-
-                        <h6 class="mb-4">Title</h6>
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floatingInput"
-                                placeholder="name@example.com">
-                            <label for="floatingInput">Title</label>
-                        </div>
-
-                        <h6 class="mb-4">Floating Label</h6>
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floatingInput"
-                                placeholder="name@example.com">
-                            <label for="floatingInput">Email address</label>
-                        </div>
-
+<!-- Form Start -->
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <form action="{{ form.action }}" method="{{ form.method }}">
+            <div class="col-sm-12 col-xl-6">
+                {% for field in form.fields %}
+                {% if field.field_type == "Text" %}
+                    <div class="form-floating mb-3">
+                        <input type="text" class="{{ field.css_class | default('form-control') }}" id="{{ field.name }}"
+                               name="{{ field.name }}" placeholder="{{ field.placeholder | default('') }}">
+                        <label for="{{ field.name }}">{{ field.label }}</label>
+                    </div>
             
-                    
-                        <div class="mb-3">
-                            <label for="formFile" class="form-label">Default file input example</label>
-                            <input class="form-control bg-dark" type="file" id="formFile">
-                        </div>
-
-             
-               
-                        <select class="form-select mb-3" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                {% else if field.field_type == "Email" %}
+                    <div class="form-floating mb-3">
+                        <input type="email" class="{{ field.css_class | default('form-control') }}" id="{{ field.name }}"
+                               name="{{ field.name }}" placeholder="{{ field.placeholder | default('') }}">
+                        <label for="{{ field.name }}">{{ field.label }}</label>
+                    </div>
+            
+                {% else if field.field_type == "File" %}
+                    <div class="mb-3">
+                        <label for="{{ field.name }}" class="form-label">{{ field.label }}</label>
+                        <input type="file" class="{{ field.css_class | default('form-control') }}" id="{{ field.name }}"
+                               name="{{ field.name }}">
+                    </div>
+            
+                {% else if field.field_type == "Select" %}
+                    <div class="mb-3">
+                        <label for="{{ field.name }}" class="form-label">{{ field.label }}</label>
+                        <select class="{{ field.css_class | default('form-select') }}" id="{{ field.name }}" name="{{ field.name }}">
+                            {% for value, label in field.choices %}
+                                <option value="{{ value }}" {% if field.value == value %}selected{% endif %}>
+                                    {{ label }}
+                                </option>
+                            {% endfor %}
                         </select>
-                       
-         
-       
-                        <input class="form-check-input" type="radio" name="flexRadioDefault"
-                            id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            Default radio
-                        </label>
-             
-                  
-                        <input class="form-check-input" type="radio" name="flexRadioDefault"
-                            id="flexRadioDefault2" checked>
-                        <label class="form-check-label" for="flexRadioDefault2">
-                            Default checked radio
-                        </label>
-     
-                </div>
+                    </div>
+            
+                {% else if field.field_type == "Radio" %}
+                    <div class="mb-3">
+                        <p>{{ field.label }}</p>
+                        {% for value, label in field.choices %}
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="{{ field.name }}_{{ loop.index }}"
+                                       name="{{ field.name }}" value="{{ value }}" {% if field.value == value %}checked{% endif %}>
+                                <label class="form-check-label" for="{{ field.name }}_{{ loop.index }}">{{ label }}</label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
 
-   
-         
+                <button type="submit" class="btn btn-primary mt-3">{{ form.submit_label }}</button>
             </div>
-        </div>
-        <!-- Form End -->
+        </form>
+    </div>
+</div>
+<!-- Form End -->
 
-   
-
-{% endblock content%}
-
-
-   
+{% endblock content %}

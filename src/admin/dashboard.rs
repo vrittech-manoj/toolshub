@@ -15,7 +15,7 @@ pub async fn dashboard() -> impl axum::response::IntoResponse {
     // Pass data to the template
     let name = "Admin Menus";
     let side_menus = menus_list::get_admin_menus();
-    println!("{:?}",side_menus);
+    // println!("{:?}",side_menus);
     let template = ToolTemplate { name, menus: &side_menus };
 
     axum::response::Html(template.render().unwrap()) // Render and return HTML
