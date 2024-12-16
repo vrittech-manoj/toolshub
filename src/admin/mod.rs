@@ -18,3 +18,4 @@ pub fn admin_routes() -> Router {
         .route("/admin/dashboard/:menu_name/", get(menus::menus))
         .route("/admin/dashboard/add/:menu_name/", get(menus::add_menus))
 }
+
