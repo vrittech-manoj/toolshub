@@ -42,6 +42,22 @@ impl PartialEq<&str> for FieldType {
     }
 }
 
+use std::fmt;
+
+impl fmt::Display for FieldType { //this is used to display in template
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        let field_type_str = match self {
+            FieldType::Text => "Text",
+            FieldType::Email => "Email",
+            FieldType::File => "File",
+            FieldType::Select => "Select",
+            FieldType::Radio => "Radio",
+            FieldType::Number => "Number",
+        };
+        write!(f, "{}", field_type_str)
+    }
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Field {
     pub name: String,
@@ -53,6 +69,13 @@ pub struct Field {
     pub value: Option<String>,
     pub css_class: Option<String>,
 }
+
+impl Field {
+    pub fn display_placeholder(&self) -> &str {
+        self.placeholder.as_deref().unwrap_or("Default Placeholder")
+    }
+}
+
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Form {
