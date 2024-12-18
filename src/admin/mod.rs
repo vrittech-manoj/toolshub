@@ -4,7 +4,8 @@ pub mod dashboard;
 pub mod routes_names;
 pub mod menus;
 pub mod menus_list;
-
+pub mod form;
+pub mod form_fields;
 
 use axum::{
     routing::get,
