@@ -1,6 +1,6 @@
 use super::form::{FieldType,Field,Form,text_field,email_field,select_field};
 
-pub async fn return_form()-> Form {
+pub async fn return_tools_form()-> Form {
 
     let mut form = Form::new("/admin/dashboard/add/tools/");
     // Add fields to match your HTML

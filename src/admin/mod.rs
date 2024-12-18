@@ -8,7 +8,7 @@ pub mod form;
 pub mod form_fields;
 
 use axum::{
-    routing::get,
+    routing::{get,post},
     Router,
 };
 
@@ -18,5 +18,6 @@ pub fn admin_routes() -> Router {
         .route("/admin/dashboard/", get(dashboard::dashboard))
         .route("/admin/dashboard/:menu_name/", get(menus::menus))
         .route("/admin/dashboard/add/:menu_name/", get(menus::add_menus))
+        .route("/admin/dashboard/add/:menu_name/", post(menus::add_menus))
 }
 

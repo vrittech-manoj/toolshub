@@ -46,13 +46,13 @@ async fn main() {
         println!("Admin login route: {:?}",  admin_login_route);
     }
 
-    // let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
-    // let manager = ConnectionManager::<PgConnection>::new(database_url);
-    // let pool = r2d2::Pool::builder()
-    //     .max_size(5)
-    //     .build(manager)
-    //     .expect("Failed to create pool.");
-    // let db_connection = Arc::new(pool);
+    let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
+    let manager = ConnectionManager::<PgConnection>::new(database_url);
+    let pool = r2d2::Pool::builder()
+        .max_size(5)
+        .build(manager)
+        .expect("Failed to create pool.");
+    let db_connection = Arc::new(pool);
     // println!("Database pool created successfully! {:?}",db_connection);
     // Define the main app routes
     let app = Router::new()

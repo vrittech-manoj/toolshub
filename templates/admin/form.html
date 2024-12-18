@@ -4,6 +4,7 @@
 
 <!-- Form Start -->
 <div class="container-fluid pt-4 px-4">
+    <center><h6 class="primary">Create {{menu_name}}</h6></center>
     <div class="row g-4">
         <form action="{{ form.action }}" method="{{ form.method }}">
             <div class="col-sm-12 col-xl-6">
@@ -45,6 +46,7 @@
                     {% endif %}
                 {% endfor %}
             </div>
+            <button type="input" class="btn btn-primary rounded-pill m-2">Submit</button>
         </form>
     </div>
 </div>
