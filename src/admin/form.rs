@@ -60,14 +60,14 @@ impl Field {
 
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct Form {
+pub struct Formdynamic {
     pub action: String,
     pub method: String,
     pub fields: Vec<Field>,
     pub submit_label: String,
 }
 
-impl Form {
+impl Formdynamic {
     pub fn new(action: &str) -> Self {
         Self {
             action: action.to_string(),

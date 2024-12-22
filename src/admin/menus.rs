@@ -3,8 +3,12 @@ use axum::http::{method, Method};
 use axum::http::uri::Scheme;
 use super::menus_list;
 use axum::{extract::Path, response::IntoResponse};
-use super::form::Form;
+use super::form::Formdynamic;
+use axum::extract::Form;
 use super::form_fields;
+use serde::Deserialize;
+
+use super::store::store;
 
 #[derive(Template)]
 #[template(path = "admin/table.html", escape = "none")]
@@ -19,28 +23,33 @@ pub async fn menus(Path(menu_name): Path<String>) -> impl axum::response::IntoRe
     let template = ToolTemplate { name:&menu_name, menus: &side_menus };
     axum::response::Html(template.render().unwrap())
 }
-    
-pub struct Person {
-    name: String,
-    age: u32,
-}
 
 #[derive(Template)]
 #[template(path = "admin/form.html", escape = "none")]
 pub struct AddToolTemplate<'a> {
     pub menu_name: &'a str,
     pub menus: &'a Vec<menus_list::MenuItem>,
-    pub form: &'a Form,
+    pub form: &'a Formdynamic,
 }
 
-pub async fn add_menus(method: Method, Path(menu_name): Path<String>) -> impl axum::response::IntoResponse {
+#[derive(Deserialize, Debug)]
+pub struct PostData {
+    // Define the fields based on the expected POST data
+    // Replace `field1`, `field2` with actual field names and types
+}
+
+pub async fn add_menus(method: Method, Path(menu_name): Path<String>,Form(post_data): Form<PostData>,) -> impl axum::response::IntoResponse {
     println!("{:?}", method);
 
     match method {
         Method::POST => {
-            println!("Handling POST request");
-            // Handle the POST request logic here, if needed
-            axum::response::Html("POST response not implemented".to_string())
+            println!("Received POST data: {:?}", post_data);
+            let is_created = store().await;
+            if is_created {
+                axum::response::Html("Tool added successfully".to_string())
+            } else {
+                axum::response::Html("Failed to add tool".to_string())
+            }
         }
         Method::GET => {
             let form_data = form_fields::return_tools_form().await;

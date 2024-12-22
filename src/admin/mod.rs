@@ -6,6 +6,7 @@ pub mod menus;
 pub mod menus_list;
 pub mod form;
 pub mod form_fields;
+pub mod store;
 
 use axum::{
     routing::{get,post},

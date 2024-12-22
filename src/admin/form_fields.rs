@@ -1,8 +1,8 @@
-use super::form::{FieldType,Field,Form,text_field,email_field,select_field};
+use super::form::{FieldType,Field,Formdynamic,text_field,email_field,select_field};
 
-pub async fn return_tools_form()-> Form {
+pub async fn return_tools_form()-> Formdynamic {
 
-    let mut form = Form::new("/admin/dashboard/add/tools/");
+    let mut form = Formdynamic::new("/admin/dashboard/add/tools/");
     // Add fields to match your HTML
     form.add_field(text_field("projectName", "Project Name"));
     form.add_field(text_field("title", "Title"));
