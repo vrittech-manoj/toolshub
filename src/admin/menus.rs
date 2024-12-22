@@ -33,16 +33,37 @@ pub struct AddToolTemplate<'a> {
     pub form: &'a Form,
 }
 
-pub async fn add_menus(method:Method,Path(menu_name): Path<String>) -> impl axum::response::IntoResponse {
+pub async fn add_menus(method: Method, Path(menu_name): Path<String>) -> impl axum::response::IntoResponse {
+    println!("{:?}", method);
 
-    // println!("{:?}",form_fields::return_tools_form().await);
-    println!("{:?}",method);
-    let form_data = form_fields::return_tools_form().await;
-    let menu_name = menu_name;
-    let side_menus = menus_list::get_admin_menus();
-    let template = AddToolTemplate { menu_name:&menu_name, menus: &side_menus,form: &form_data};
-    axum::response::Html(template.render().unwrap())
+    match method {
+        Method::POST => {
+            println!("Handling POST request");
+            // Handle the POST request logic here, if needed
+            axum::response::Html("POST response not implemented".to_string())
+        }
+        Method::GET => {
+            let form_data = form_fields::return_tools_form().await;
+            let side_menus = menus_list::get_admin_menus();
+            let template = AddToolTemplate { 
+                menu_name: &menu_name, 
+                menus: &side_menus, 
+                form: &form_data 
+            };
 
+            match template.render() {
+                Ok(html) => axum::response::Html(html),
+                Err(err) => {
+                    eprintln!("Template rendering error: {}", err);
+                    axum::response::Html("Internal Server Error".to_string())
+                }
+            }
+        }
+        _ => {
+            println!("Unhandled HTTP method");
+            axum::response::Html("Unhandled method".to_string())
+        }
+    }
 }
 
 
