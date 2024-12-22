@@ -7,6 +7,7 @@ use super::form::Formdynamic;
 use axum::extract::Form;
 use super::form_fields;
 use serde::Deserialize;
+use std::collections::HashMap;
 
 use super::store::store;
 
@@ -34,16 +35,20 @@ pub struct AddToolTemplate<'a> {
 
 #[derive(Deserialize, Debug)]
 pub struct PostData {
-    // Define the fields based on the expected POST data
-    // Replace `field1`, `field2` with actual field names and types
+    // Use a dynamic map to capture all fields and their values
+    pub fields: HashMap<String, String>,
 }
 
-pub async fn add_menus(method: Method, Path(menu_name): Path<String>,Form(post_data): Form<PostData>,) -> impl axum::response::IntoResponse {
+pub async fn add_menus(method: Method, Path(menu_name): Path<String>, Form(post_data): Form<HashMap<String, String>>,) -> impl axum::response::IntoResponse {
     println!("{:?}", method);
 
     match method {
         Method::POST => {
             println!("Received POST data: {:?}", post_data);
+            println!("Received POST data:");
+            for (key, value) in &post_data {
+                println!("Field: {}, Value: {}", key, value);
+            }
             let is_created = store().await;
             if is_created {
                 axum::response::Html("Tool added successfully".to_string())

@@ -12,23 +12,23 @@
                     {% if field.field_type == "Email" %}
                         <h6 class="mb-4">{{ field.label }}</h6>
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                            <input type="email" class="form-control" id="floatingInput" name="{{ field.name }}" placeholder="name@example.com">
                             <label for="floatingInput">{{ field.display_placeholder() }}</label>
                         </div>
                     {% else if field.field_type == "Text" %}
                         <h6 class="mb-4">{{ field.label }}</h6>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingTitle" placeholder="Enter title">
+                            <input type="text" class="form-control" id="floatingTitle" name="{{ field.name }}" placeholder="Enter title">
                             <label for="floatingTitle">{{ field.display_placeholder() }}</label>
                         </div>
 
                     {% else if field.field_type == "File" %}
                         <div class="mb-3">
                             <label for="formFile" class="form-label">{{ field.label }}</label>
-                            <input class="form-control bg-dark" type="file" id="formFile">
+                            <input class="form-control bg-dark" type="file" id="formFile" name="{{ field.name }}">
                         </div>
                     {% else if field.field_type == "Select" %}
-                        <select class="form-select mb-3" aria-label="Default select example">
+                        <select class="form-select mb-3" aria-label="Default select example" name="{{ field.name }}">
                             <option selected>Open this select menu</option>
                             {% for (value, label) in field.choices.as_ref().unwrap() %}
                                 <option value="{{ value }}">{{ label }}</option>
