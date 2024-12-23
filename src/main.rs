@@ -9,12 +9,11 @@ mod tools;
 mod admin;
 mod routes;
 mod database_connection;
-use std::env;
 
 
 #[tokio::main]
 async fn main() {
-    color_eyre::install();
+    // color_eyre::install();
     dotenv().ok(); // Load environment variables
     // Configure the application router
     let app = routes::configure_app_router().await;

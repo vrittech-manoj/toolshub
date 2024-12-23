@@ -18,3 +18,6 @@ sea-orm = { version = "0.12", features = ["sqlx-postgres", "runtime-tokio-native
 color-eyre = "0.6"
 tracing = "0.1"
 
+sea-orm-migration = "0.11"
+
+
