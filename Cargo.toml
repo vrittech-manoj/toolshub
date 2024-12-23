@@ -6,11 +6,15 @@ edition = "2021"
 [dependencies]
 tower-http = { version = "0.4.1", features = ["fs"] }
 axum = "0.6"
-tokio = { version = "1", features = ["full"] }
+tokio = { version = "1", features = ["full","macros"] }
 askama = "0.12.1"
 
-diesel = { version = "2.2.0", features = ["postgres","r2d2"] }
-serde = { version = "1.0", features = ["derive"] }
-dotenvy = "0.15"
-r2d2 = "0.8"
+sea-orm-macros = "0.11"                       # Entity macros for SeaORM
+dotenvy = "0.15"                              # Environment variable management
+sqlx = { version = "0.6", features = ["runtime-tokio-native-tls", "postgres"] }
+serde = { version = "1.0", features = ["derive"] } # For JSON serialization/deserialization
+
+sea-orm = { version = "0.12", features = ["sqlx-postgres", "runtime-tokio-native-tls"] }
+color-eyre = "0.6"
+tracing = "0.1"
 

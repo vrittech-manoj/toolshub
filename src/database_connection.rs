@@ -1,21 +1,30 @@
-use diesel::r2d2::{ConnectionManager, Pool};
-use diesel::PgConnection;
-use std::sync::Arc;
-use dotenvy::dotenv;
 use std::env;
 
-pub type DbPool = Arc<Pool<ConnectionManager<PgConnection>>>;
+use sea_orm::{Database, DatabaseConnection, DbErr};
 
-// Function to create the database pool
-pub fn create_db_pool() -> DbPool {
-    dotenv().ok(); // Load environment variables
+use sea_orm::ConnectOptions;
+use std::time::Duration;
+use tracing::log::LevelFilter;
+use color_eyre::Result;
 
+
+/// Function to create the database connection pool
+pub async fn create_db_pool() -> Result<DatabaseConnection, DbErr> {
     let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
-    let manager = ConnectionManager::<PgConnection>::new(database_url);
-    let pool = Pool::builder()
-        .max_size(5) // Adjust pool size as needed
-        .build(manager)
-        .expect("Failed to create database pool.");
+    
+    let mut opt = ConnectOptions::new(database_url);
+    opt.max_connections(100)
+        .min_connections(5)
+        .connect_timeout(Duration::from_secs(8))
+        .acquire_timeout(Duration::from_secs(8))
+        .idle_timeout(Duration::from_secs(8))
+        .max_lifetime(Duration::from_secs(8))
+        .sqlx_logging(true)
+        .sqlx_logging_level(LevelFilter::Info);
 
-    Arc::new(pool)
+    Database::connect(opt).await
 }
+
+
+// export DATABASE_URL=postgres://postgres:md@localhost/toolshub
+// cargo run
