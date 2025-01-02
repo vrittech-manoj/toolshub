@@ -1,0 +1,13 @@
+https://chatgpt.com/share/67762acc-56c8-800d-af98-7c84a3838818
+
+sudo apt update
+sudo apt install libssl-dev pkg-config
+
+
+nano ~/.zshrc
+
+export OPENSSL_INCLUDE_DIR=/usr/include
+export OPENSSL_LIB_DIR=/usr/lib/x86_64-linux-gnu
+
+cargo clean
+cargo build --release
