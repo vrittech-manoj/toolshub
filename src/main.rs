@@ -10,6 +10,8 @@ mod admin;
 mod routes;
 mod database_connection;
 
+pub mod entities;
+
 
 #[tokio::main]
 async fn main() {
